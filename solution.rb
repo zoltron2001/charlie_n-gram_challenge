@@ -41,15 +41,24 @@ def return_ngram_elements(array,index)
     # adds unigram to output
     output_array << array[index]
     # adds bigram to output if next element exists
+    p index + 1
+    p !!array[index+1]
     if !!array[index+1]
       output_array << array[index]+" "+array[index+1]
     end
+    p index + 2
+    p !!array[index+2]
     # adds trigram to output if next element exists
     if !!array[index+2]
       output_array << array[index]+" "+array[index+1]+" "+array[index+2]
     end
+    output_array
 end
 
 # tests
 
-p "Test1 Passed" if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression.", "impression"]
+if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression.", "impression"]
+  p "Test1 Passed"
+else
+  p "Test1 Failed"
+end
