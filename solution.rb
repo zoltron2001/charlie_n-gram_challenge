@@ -1,35 +1,32 @@
 
 def generate_ngram(string)
-  new_string = remove_punctuation(string)
-  initial_array = new_string.split(" ")
-  return_ngram_array(initial_array)
+  # regex looks for collections of letters containing apostrophes
+  # OR collections of letters
+  word_array = string.scan(/\w+'\w+|\w+/)
+  return_ngram_array(word_array)
 end
 
-def remove_punctuation(string)
-  string.gsub(/[.,!?;:()"]/,"")
-end
-
-def return_ngram_array(array)
-    output_array = []
+def return_ngram_array(word_array)
+    ngram_array = []
     index = 0
-    until index == array.length
+    until index == word_array.length
       # adds unigram to output
-      output_array << array[index]
+      ngram_array << word_array[index]
       # adds bigram to output if next element exists
       # using double bang to turn 'truthy nils' into false
-      if !!array[index+1]
-        output_array << array.slice(index,2).join(" ")
+      if !!word_array[index+1]
+        ngram_array << word_array.slice(index,2).join(" ")
       end
       # adds trigram to output if next element exists
-      if !!array[index+2]
-        output_array << array.slice(index,3).join(" ")
+      if !!word_array[index+2]
+        ngram_array << word_array.slice(index,3).join(" ")
       end
       index += 1
     end
-    output_array
+    ngram_array
 end
 
-# test
+# tests
 
 if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"]
   p "Charlie Test Passed"
@@ -43,7 +40,14 @@ else
   p "Complex Punctuation Test Failed"
 end
 
+if generate_ngram("Make's a killer impression!") == ["Make's", "Make's a", "Make's a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"]
+  p "Apostrophe Test Passed"
+else
+  p "Apostrophe Test Failed"
+end
+
 =begin
+
 Pseudocode
 
 create n-grams from a string of text
