@@ -5,24 +5,24 @@ def generate_ngram(string)
   return_ngram_array(word_array)
 end
 
-def return_ngram_array(array)
-    output_array = []
+def return_ngram_array(word_array)
+    ngram_array = []
     index = 0
-    until index == array.length
+    until index == word_array.length
       # adds unigram to output
-      output_array << array[index]
+      ngram_array << word_array[index]
       # adds bigram to output if next element exists
       # using double bang to turn 'truthy nils' into false
-      if !!array[index+1]
-        output_array << array.slice(index,2).join(" ")
+      if !!word_array[index+1]
+        ngram_array << word_array.slice(index,2).join(" ")
       end
       # adds trigram to output if next element exists
-      if !!array[index+2]
-        output_array << array.slice(index,3).join(" ")
+      if !!word_array[index+2]
+        ngram_array << word_array.slice(index,3).join(" ")
       end
       index += 1
     end
-    output_array
+    ngram_array
 end
 
 # test
