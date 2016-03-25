@@ -24,14 +24,26 @@ Requirements
 
 # Naive Solution
 
-def ngram_solver(string)
+def generate_ngram(string)
   initial_array = string.split(" ")
-  output_array = []
   counter = 0
-  until counter == intitial_array.length - 1
-    output_array << initial_array[counter]
-    output_array << initial_array[counter,counter+1].join(' ')
-    output_array << initial_array[counter,counter+1,counter+2].join(' ')
+  until counter == initial_array.length - 1
+    return_ngram_elements(initial_array,counter)
     counter+=1
   end
+end
+
+def return_ngram_elements(array,counter)
+    output_array = []
+    output_array << array[counter]
+    if !next_element_nil?(array[counter+1])
+      output_array << array[counter]+" "+array[counter+1]
+    end
+    if !next_element_nil?(array[counter+2]
+      output_array << array[counter]+" "+array[counter+1]+" "+array[counter+2]
+    end
+end
+
+def next_element_nil?(element)
+  true if element == nil
 end
