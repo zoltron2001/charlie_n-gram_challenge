@@ -31,21 +31,21 @@ def generate_ngram(string)
   until counter == initial_array.length - 1
     # adds ngrams to output
     output_array + return_ngram_elements(initial_array,counter)
-    counter+=1
+    counter += 1
   end
 end
 
 def return_ngram_elements(array,index)
     output_array = []
     # adds unigram to output
-    output_array << array[counter]
+    output_array << array[index]
     # adds bigram to output if next element exists
-    if !next_element_nil?(array[counter+1])
-      output_array << array[counter]+" "+array[counter+1]
+    if !next_element_nil?(array[index+1])
+      output_array << array[index]+" "+array[index+1]
     end
     # adds trigram to output if next element exists
-    if !next_element_nil?(array[counter+2])
-      output_array << array[counter]+" "+array[counter+1]+" "+array[counter+2]
+    if !next_element_nil?(array[index+2])
+      output_array << array[index]+" "+array[index+1]+" "+array[index+2]
     end
 end
 
