@@ -1,6 +1,7 @@
 
 def generate_ngram(string)
-  array_of_words = string.scan(/\w+/)
+  # regex lumps together all characters until a non-letter or apostrophe
+  array_of_words = string.scan(/\w+'\w+|\w+/)
   return_ngram_array(array_of_words)
 end
 
@@ -36,6 +37,12 @@ if generate_ngram("Make: a, killer; impression!") == ["Make", "Make a", "Make a 
   p "Complex Punctuation Test Passed"
 else
   p "Complex Punctuation Test Failed"
+end
+
+if generate_ngram("Make's a killer impression!") == ["Make's", "Make's a", "Make's a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"]
+  p "Apostrophe Test Passed"
+else
+  p "Apostrophe Test Failed"
 end
 
 =begin
