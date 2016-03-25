@@ -26,23 +26,27 @@ Requirements
 
 def generate_ngram(string)
   initial_array = string.split(" ")
-  output_array = []
-  counter = 0
-  until counter == initial_array.length
-    # adds unigram to output
-    output_array << initial_array[counter]
-    # adds bigram to output if next element exists
-    # using double bang to turn 'truthy nils' into false
-    if !!initial_array[counter+1]
-      output_array << initial_array[counter]+" "+initial_array[counter+1]
+  return_ngram_array(initial_array)
+end
+
+def return_ngram_array(array)
+    output_array = []
+    index = 0
+    until index == array.length - 1
+      # adds unigram to output
+      output_array << array[index]
+      # adds bigram to output if next element exists
+      # using double bang to turn 'truthy nils' into false
+      if !!array[index+1]
+        output_array << array[index]+" "+array[index+1]
+      end
+      # adds trigram to output if next element exists
+      if !!array[index+2]
+        output_array << array[index]+" "+array[index+1]+" "+array[index+2]
+      end
+      index += 1
     end
-    # adds trigram to output if next element exists
-    if !!initial_array[counter+2]
-      output_array << initial_array[counter]+" "+initial_array[counter+1]+" "+initial_array[counter+2]
-    end
-    counter += 1
-  end
-  output_array
+    output_array
 end
 
 # tests
