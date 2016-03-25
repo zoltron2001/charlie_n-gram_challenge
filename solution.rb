@@ -22,7 +22,7 @@ Requirements
 
 =end
 
-# Naive Solution
+# Initial Solution
 
 def generate_ngram(string)
   initial_array = string.split(" ")
@@ -30,6 +30,7 @@ def generate_ngram(string)
   counter = 0
   until counter == initial_array.length - 1
     # adds ngrams to output
+    p return_ngram_elements(initial_array,counter)
     output_array + return_ngram_elements(initial_array,counter)
     counter += 1
   end
@@ -40,17 +41,13 @@ def return_ngram_elements(array,index)
     # adds unigram to output
     output_array << array[index]
     # adds bigram to output if next element exists
-    if !next_element_nil?(array[index+1])
+    if !!array[index+1]
       output_array << array[index]+" "+array[index+1]
     end
     # adds trigram to output if next element exists
-    if !next_element_nil?(array[index+2])
+    if !!array[index+2]
       output_array << array[index]+" "+array[index+1]+" "+array[index+2]
     end
-end
-
-def next_element_nil?(element)
-  element == nil
 end
 
 # tests
