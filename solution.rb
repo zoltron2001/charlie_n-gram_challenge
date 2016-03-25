@@ -30,7 +30,7 @@ def generate_ngram(string)
   counter = 0
   until counter == initial_array.length - 1
     # adds ngrams to output
-    ouput_array + return_ngram_elements(initial_array,counter)
+    output_array + return_ngram_elements(initial_array,counter)
     counter+=1
   end
 end
