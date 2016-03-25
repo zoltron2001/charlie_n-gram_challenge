@@ -10,14 +10,14 @@ def return_ngram_array(word_array)
     ngram_array = []
     index = 0
     until index == word_array.length
-      # adds unigram to output
+      # adds unigram to array
       ngram_array << word_array[index]
-      # adds bigram to output if next element exists
+      # adds bigram to array if next element exists
       # using double bang to turn 'truthy nils' into false
       if !!word_array[index+1]
         ngram_array << word_array.slice(index,2).join(" ")
       end
-      # adds trigram to output if next element exists
+      # adds trigram to array if next element exists
       if !!word_array[index+2]
         ngram_array << word_array.slice(index,3).join(" ")
       end
