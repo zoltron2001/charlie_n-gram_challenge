@@ -1,3 +1,39 @@
+
+# Initial Solution
+
+def generate_ngram(string)
+  initial_array = string.split(" ")
+  return_ngram_array(initial_array)
+end
+
+def return_ngram_array(array)
+    output_array = []
+    index = 0
+    until index == array.length
+      # adds unigram to output
+      output_array << array[index]
+      # adds bigram to output if next element exists
+      # using double bang to turn 'truthy nils' into false
+      if !!array[index+1]
+        output_array << array.slice(index,2).join(" ")
+      end
+      # adds trigram to output if next element exists
+      if !!array[index+2]
+        output_array << array.slice(index,3).join(" ")
+      end
+      index += 1
+    end
+    output_array
+end
+
+# test
+
+if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression.", "killer", "killer impression.", "impression."]
+  p "Charlie Test Passed"
+else
+  p "Charlie Test Failed"
+end
+
 =begin
 Pseudocode
 
@@ -21,42 +57,3 @@ Requirements
 * Include tests
 
 =end
-
-# Initial Solution
-
-def generate_ngram(string)
-  initial_array = string.split(" ")
-  output_array = []
-  counter = 0
-  until counter == initial_array.length
-    # combines output with new ngrams
-    # '#concat' will append arrays together unlike '+' which would generate a new array from these two
-    output_array.concat( return_ngram_elements(initial_array,counter) )
-    counter += 1
-  end
-  output_array
-end
-
-def return_ngram_elements(array,index)
-    output_array = []
-    # adds unigram to output
-    output_array << array[index]
-    # adds bigram to output if next element exists
-    # using double bang to turn 'truthy nils' into false
-    if !!array[index+1]
-      output_array << array[index]+" "+array[index+1]
-    end
-    # adds trigram to output if next element exists
-    if !!array[index+2]
-      output_array << array[index]+" "+array[index+1]+" "+array[index+2]
-    end
-    output_array
-end
-
-# tests
-
-if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression.", "killer", "killer impression.", "impression."]
-  p "Charlie test Passed"
-else
-  p "Charlie test Failed"
-end
