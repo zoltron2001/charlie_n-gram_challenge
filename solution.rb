@@ -29,12 +29,13 @@ def generate_ngram(string)
   output_array = []
   counter = 0
   until counter == initial_array.length - 1
+    # adds ngrams to output
     ouput_array + return_ngram_elements(initial_array,counter)
     counter+=1
   end
 end
 
-def return_ngram_elements(array,counter)
+def return_ngram_elements(array,index)
     output_array = []
     # adds unigram to output
     output_array << array[counter]
@@ -43,7 +44,7 @@ def return_ngram_elements(array,counter)
       output_array << array[counter]+" "+array[counter+1]
     end
     # adds trigram to output if next element exists
-    if !next_element_nil?(array[counter+2]
+    if !next_element_nil?(array[counter+2])
       output_array << array[counter]+" "+array[counter+1]+" "+array[counter+2]
     end
 end
@@ -51,3 +52,4 @@ end
 def next_element_nil?(element)
   element == nil
 end
+
