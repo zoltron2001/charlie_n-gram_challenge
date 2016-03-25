@@ -35,10 +35,13 @@ end
 
 def return_ngram_elements(array,counter)
     output_array = []
+    # adds unigram to output
     output_array << array[counter]
+    # adds bigram to output if next element exists
     if !next_element_nil?(array[counter+1])
       output_array << array[counter]+" "+array[counter+1]
     end
+    # adds trigram to output if next element exists
     if !next_element_nil?(array[counter+2]
       output_array << array[counter]+" "+array[counter+1]+" "+array[counter+2]
     end
