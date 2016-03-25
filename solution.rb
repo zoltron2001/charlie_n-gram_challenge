@@ -54,7 +54,7 @@ end
 # tests
 
 if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression.", "killer", "killer impression.", "impression."]
-  p "Test1 Passed"
+  p "Charlie test Passed"
 else
-  p "Test1 Failed"
+  p "Charlie test Failed"
 end
