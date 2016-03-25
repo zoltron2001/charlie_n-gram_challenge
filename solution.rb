@@ -53,3 +53,6 @@ def next_element_nil?(element)
   element == nil
 end
 
+# tests
+
+p "Test1 Passed" if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression.", "impression"]
