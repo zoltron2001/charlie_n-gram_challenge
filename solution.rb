@@ -45,5 +45,5 @@ def return_ngram_elements(array,counter)
 end
 
 def next_element_nil?(element)
-  true if element == nil
+  element == nil
 end
