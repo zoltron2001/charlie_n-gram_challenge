@@ -26,9 +26,10 @@ Requirements
 
 def generate_ngram(string)
   initial_array = string.split(" ")
+  output_array = []
   counter = 0
   until counter == initial_array.length - 1
-    return_ngram_elements(initial_array,counter)
+    ouput_array + return_ngram_elements(initial_array,counter)
     counter+=1
   end
 end
