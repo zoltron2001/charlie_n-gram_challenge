@@ -26,7 +26,7 @@ def return_ngram_array(word_array)
     ngram_array
 end
 
-# test
+# tests
 
 if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"]
   p "Charlie Test Passed"
