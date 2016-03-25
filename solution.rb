@@ -29,28 +29,20 @@ def generate_ngram(string)
   output_array = []
   counter = 0
   until counter == initial_array.length
-    # combines output with new ngrams
-    # '#concat' will append arrays together unlike '+' which would generate a new array from these two
-    output_array.concat( return_ngram_elements(initial_array,counter) )
+    # adds unigram to output
+    output_array << initial_array[counter]
+    # adds bigram to output if next element exists
+    # using double bang to turn 'truthy nils' into false
+    if !!initial_array[counter+1]
+      output_array << initial_array[counter]+" "+initial_array[counter+1]
+    end
+    # adds trigram to output if next element exists
+    if !!initial_array[counter+2]
+      output_array << initial_array[counter]+" "+initial_array[counter+1]+" "+initial_array[counter+2]
+    end
     counter += 1
   end
   output_array
-end
-
-def return_ngram_elements(array,index)
-    output_array = []
-    # adds unigram to output
-    output_array << array[index]
-    # adds bigram to output if next element exists
-    # using double bang to turn 'truthy nils' into false
-    if !!array[index+1]
-      output_array << array[index]+" "+array[index+1]
-    end
-    # adds trigram to output if next element exists
-    if !!array[index+2]
-      output_array << array[index]+" "+array[index+1]+" "+array[index+2]
-    end
-    output_array
 end
 
 # tests
