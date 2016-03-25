@@ -1,9 +1,12 @@
 
-# Initial Solution
-
 def generate_ngram(string)
-  initial_array = string.split(" ")
+  new_string = remove_punctuation(string)
+  initial_array = new_string.split(" ")
   return_ngram_array(initial_array)
+end
+
+def remove_punctuation(string)
+  string.gsub(/[.,!?;:()"]/,"")
 end
 
 def return_ngram_array(array)
@@ -28,10 +31,16 @@ end
 
 # test
 
-if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression.", "killer", "killer impression.", "impression."]
+if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"]
   p "Charlie Test Passed"
 else
   p "Charlie Test Failed"
+end
+
+if generate_ngram("Make: a, killer; impression!") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"]
+  p "Complex Punctuation Test Passed"
+else
+  p "Complex Punctuation Test Failed"
 end
 
 =begin
