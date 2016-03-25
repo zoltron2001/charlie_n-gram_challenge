@@ -3,7 +3,6 @@
 
 def generate_ngram(string)
   initial_array = string.split(" ")
-  p return_ngram_array(initial_array)
   return_ngram_array(initial_array)
 end
 
