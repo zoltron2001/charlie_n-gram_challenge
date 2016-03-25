@@ -1,12 +1,7 @@
 
 def generate_ngram(string)
-  new_string = remove_punctuation(string)
-  initial_array = new_string.split(" ")
-  return_ngram_array(initial_array)
-end
-
-def remove_punctuation(string)
-  string.gsub(/[.,!?;:()"]/,"")
+  array_of_words = string.scan(/\w+/)
+  return_ngram_array(array_of_words)
 end
 
 def return_ngram_array(array)
@@ -44,6 +39,7 @@ else
 end
 
 =begin
+
 Pseudocode
 
 create n-grams from a string of text
