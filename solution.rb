@@ -22,16 +22,39 @@ Requirements
 
 =end
 
-# Naive Solution
+# Initial Solution
 
-def ngram_solver(string)
+def generate_ngram(string)
   initial_array = string.split(" ")
   output_array = []
   counter = 0
-  until counter == intitial_array.length - 1
-    output_array << initial_array[counter]
-    output_array << initial_array[counter,counter+1].join(' ')
-    output_array << initial_array[counter,counter+1,counter+2].join(' ')
-    counter+=1
+  until counter == initial_array.length
+    # adds ngrams to output
+    output_array.concat( return_ngram_elements(initial_array,counter) )
+    counter += 1
   end
+  output_array
+end
+
+def return_ngram_elements(array,index)
+    output_array = []
+    # adds unigram to output
+    output_array << array[index]
+    # adds bigram to output if next element exists
+    if !!array[index+1]
+      output_array << array[index]+" "+array[index+1]
+    end
+    # adds trigram to output if next element exists
+    if !!array[index+2]
+      output_array << array[index]+" "+array[index+1]+" "+array[index+2]
+    end
+    output_array
+end
+
+# tests
+
+if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression.", "killer", "killer impression.", "impression."]
+  p "Charlie test Passed"
+else
+  p "Charlie test Failed"
 end
