@@ -1,6 +1,7 @@
 
 def generate_ngram(string)
-  # regex lumps together all characters until a non-letter or apostrophe
+  # regex looks for collections of letters containing apostrophes
+  # OR collections of letters
   word_array = string.scan(/\w+'\w+|\w+/)
   return_ngram_array(word_array)
 end
