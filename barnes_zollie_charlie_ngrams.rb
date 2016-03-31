@@ -28,23 +28,31 @@ end
 
 # tests
 
-if generate_ngram("Make a killer impression.") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"]
-  p "Charlie Test Passed"
-else
-  p "Charlie Test Failed"
+def print_test_results(name, input, expectation)
+  result = generate_ngram(input)
+  puts name
+  if result == expectation
+    puts "  Result: Passed"
+  else
+    puts "  Result: Failed"
+  end
+  puts "  Input: \"#{input}\""
+  print "  Output: "
+  p result
+  puts "\n"
 end
 
-if generate_ngram("Make: a, killer; impression!") == ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"]
-  p "Complex Punctuation Test Passed"
-else
-  p "Complex Punctuation Test Failed"
-end
+print_test_results("Charlie Test",
+                   "Make a killer impression.",
+                   ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"])
 
-if generate_ngram("Make's a killer impression!") == ["Make's", "Make's a", "Make's a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"]
-  p "Apostrophe Test Passed"
-else
-  p "Apostrophe Test Failed"
-end
+print_test_results("Complex Punctuation Test",
+                   "Make: a, killer; impression!",
+                   ["Make", "Make a", "Make a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"])
+
+print_test_results("Apostrophe Test",
+                   "Make's a killer impression!",
+                   ["Make's", "Make's a", "Make's a killer", "a", "a killer", "a killer impression", "killer", "killer impression", "impression"])
 
 =begin
 
